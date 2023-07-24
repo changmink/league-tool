@@ -1,0 +1,38 @@
+@startuml
+class League {
+    -players
+    -matcher
+    -roundNumber
+    +nextMatch()
+    +endGame()
+}
+class Player {
+  -id
+  -name
+  -win
+  -lose
+  -tie
+  +win()
+  +lose()
+  +tie()
+  +getScore()
+}
+class Matcher {
+  +match(players, roundNumber)
+}
+class Game {
+  -id
+  -players[2]
+  -ended
+  +end()
+}
+enum GameResult{
+    PLAYER1_WIN
+    PLAYER2_WIN
+    TIE
+}
+League *-- Player
+League *-- Matcher
+Matcher <-- Game : 생성
+Game <-- GameResult : 결과로 사용
+@enduml
