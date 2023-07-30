@@ -1,12 +1,15 @@
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 public class League {
+    private String id;
     private GameMatcher matcher;
     private List<Player> players;
     private Map<String, Game> games;
     private int round;
     public League(GameMatcher matcher, List<Player> players) {
+        this.id = UUID.randomUUID().toString();
         this.matcher = matcher;
         this.players = players;
         this.round = 1;
