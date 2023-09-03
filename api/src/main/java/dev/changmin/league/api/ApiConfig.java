@@ -9,9 +9,9 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 @Configuration
 public class ApiConfig {
     @Bean
-    public RouterFunction route() {
+    public RouterFunction route(leagueHandler leagueHandler) {
         return RouterFunctions.route()
-                .GET("/leagues", request -> ServerResponse.ok().bodyValue("league"))
+                .GET("/leagues", leagueHandler::get)
                 .GET("/leagues/{id}", request -> ServerResponse.ok().bodyValue("league_id"))
                 .GET("/leagues/{league_id}/players", request -> ServerResponse.ok().bodyValue("players"))
                 .GET("/leagues/{league_id}/players/{id}", request -> ServerResponse.ok().bodyValue("players_id"))
