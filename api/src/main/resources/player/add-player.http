@@ -1,0 +1,6 @@
+POST localhost:8080/fb13f01f-047d-4b36-aedd-555548137a6e/players
+content-type: application/json
+
+{
+  "name": "miyeon"
+}

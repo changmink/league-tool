@@ -1,6 +1,7 @@
 package dev.changmin.league.api;
 
 import dev.changmin.league.core.League;
+import dev.changmin.league.core.Player;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
@@ -21,5 +22,10 @@ public class Repository {
 
     public League getLeague(String id) {
         return leagues.get(id);
+    }
+
+    public void addPlayer(String leagueId, Player player) {
+        League league = getLeague(leagueId);
+        league.addPlayer(player);
     }
 }

@@ -79,4 +79,12 @@ public class League {
     public String getName() {
         return name;
     }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public void addPlayer(Player player) {
+        players.add(player);
+    }
 }

@@ -1,6 +1,6 @@
 package dev.changmin.league.api.dto;
 
-public class LeagueDTO {
+public class LeagueRequest {
     private String name;
 
     public String getName() {

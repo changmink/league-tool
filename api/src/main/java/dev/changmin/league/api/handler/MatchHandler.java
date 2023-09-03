@@ -7,15 +7,15 @@ import reactor.core.publisher.Mono;
 
 @Component
 public class MatchHandler {
-    public static Mono<ServerResponse> get(ServerRequest serverRequest) {
+    public Mono<ServerResponse> get(ServerRequest serverRequest) {
         return null;
     }
 
-    public static Mono<ServerResponse> post(ServerRequest serverRequest) {
+    public Mono<ServerResponse> post(ServerRequest serverRequest) {
         return null;
     }
 
-    public static Mono<ServerResponse> getById(ServerRequest serverRequest) {
+    public Mono<ServerResponse> getById(ServerRequest serverRequest) {
         return null;
     }
 }

@@ -2,7 +2,7 @@ package dev.changmin.league.api.handler;
 
 
 import dev.changmin.league.api.Repository;
-import dev.changmin.league.api.dto.LeagueDTO;
+import dev.changmin.league.api.dto.LeagueRequest;
 import dev.changmin.league.core.GameMatcher;
 import dev.changmin.league.core.League;
 import org.springframework.stereotype.Component;
@@ -26,9 +26,9 @@ public class LeagueHandler {
     }
 
     public Mono<ServerResponse> post(ServerRequest serverRequest) {
-        Mono<LeagueDTO> leagueDTOMono = serverRequest.bodyToMono(LeagueDTO.class);
-        return leagueDTOMono.flatMap(leagueDTO -> {
-            League league = new League(gameMatcher, new ArrayList<>(), leagueDTO.getName());
+        Mono<LeagueRequest> leagueDTOMono = serverRequest.bodyToMono(LeagueRequest.class);
+        return leagueDTOMono.flatMap(leagueRequest -> {
+            League league = new League(gameMatcher, new ArrayList<>(), leagueRequest.getName());
             repository.addLeague(league);
             return ServerResponse.ok().bodyValue(league);
         });
