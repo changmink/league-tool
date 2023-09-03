@@ -19,7 +19,7 @@ public class LeagueHandler {
     private Map<String, League> leagues = new HashMap<>();
 
     public Mono<ServerResponse> get(ServerRequest serverRequest) {
-        return null;
+        return ServerResponse.ok().bodyValue(leagues.values());
     }
 
     public Mono<ServerResponse> post(ServerRequest serverRequest) {
@@ -27,12 +27,16 @@ public class LeagueHandler {
         return leagueDTOMono.flatMap(leagueDTO -> {
             League league = new League(gameMatcher, new ArrayList<>(), leagueDTO.getName());
             leagues.put(league.getId(), league);
-            leagueDTO.setId(league.getId());
-            return ServerResponse.ok().bodyValue(leagueDTO);
+            return ServerResponse.ok().bodyValue(league);
         });
     }
 
     public Mono<ServerResponse> getById(ServerRequest serverRequest) {
-        return null;
+        String id = serverRequest.pathVariable("id");
+        League league = leagues.get(id);
+        if (null == league) {
+            return ServerResponse.notFound().build();
+        }
+        return ServerResponse.ok().bodyValue(league);
     }
 }

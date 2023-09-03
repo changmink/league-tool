@@ -2,7 +2,6 @@ package dev.changmin.league.api.dto;
 
 public class LeagueDTO {
     private String name;
-    private String id;
 
     public String getName() {
         return name;
@@ -10,13 +9,5 @@ public class LeagueDTO {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 }
