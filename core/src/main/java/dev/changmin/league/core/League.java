@@ -1,15 +1,19 @@
+package dev.changmin.league.core;
+
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
 public class League {
     private String id;
+    private String name;
     private GameMatcher matcher;
     private List<Player> players;
     private Map<String, Game> games;
     private int round;
-    public League(GameMatcher matcher, List<Player> players) {
+    public League(GameMatcher matcher, List<Player> players, String name) {
         this.id = UUID.randomUUID().toString();
+        this.name = name;
         this.matcher = matcher;
         this.players = players;
         this.round = 1;
@@ -26,7 +30,7 @@ public class League {
             game.end(GameResult.values()[result]);
             return isAllEndGame();
         }
-        throw new IllegalArgumentException("Not Found Game");
+        throw new IllegalArgumentException("Not Found dev.changmin.league.core.Game");
     }
 
     private boolean isAllEndGame() {
@@ -66,5 +70,9 @@ public class League {
 
     public boolean isEnded() {
         return round > totalRound();
+    }
+
+    public String getId() {
+        return id;
     }
 }

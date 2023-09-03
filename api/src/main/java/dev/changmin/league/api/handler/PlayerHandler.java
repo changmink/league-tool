@@ -1,4 +1,4 @@
-package dev.changmin.league.api;
+package dev.changmin.league.api.handler;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;

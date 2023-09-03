@@ -1,3 +1,5 @@
+package dev.changmin.league.core;
+
 import java.util.*;
 
 public class GameMatcher {

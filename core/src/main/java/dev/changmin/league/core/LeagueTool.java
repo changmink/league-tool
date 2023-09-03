@@ -1,3 +1,5 @@
+package dev.changmin.league.core;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -8,7 +10,7 @@ public class LeagueTool {
         Scanner scanner = new Scanner(System.in);
         List<Player> playerList = new ArrayList<>();
         String name;
-        System.out.println("Input Player name. end '-1'");
+        System.out.println("Input dev.changmin.league.core.Player name. end '-1'");
         while (true) {
             System.out.print("name: ");
             name = scanner.nextLine();
@@ -21,7 +23,7 @@ public class LeagueTool {
             playerList.add(player);
         }
 
-        League league = new League(new GameMatcher(), playerList);
+        League league = new League(new GameMatcher(), playerList, "league");
 
         while(!league.isEnded()) {
             Map<String, Game> games = league.match();
@@ -30,9 +32,9 @@ public class LeagueTool {
             }
 
             while (true) {
-                System.out.print("Game id: ");
+                System.out.print("dev.changmin.league.core.Game id: ");
                 String id = scanner.nextLine();
-                System.out.print("Game result(0 - tie, 1 - p1 win, 2 - p2 win): ");
+                System.out.print("dev.changmin.league.core.Game result(0 - tie, 1 - p1 win, 2 - p2 win): ");
                 int result = Integer.parseInt(scanner.nextLine());
                 if (league.endGame(id, result)) {
                     break;
