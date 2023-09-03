@@ -9,16 +9,20 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 @Configuration
 public class ApiConfig {
     @Bean
-    public RouterFunction route(leagueHandler leagueHandler) {
+    public RouterFunction route(LeagueHandler leagueHandler) {
         return RouterFunctions.route()
+                .POST("/leagues", leagueHandler::post)
                 .GET("/leagues", leagueHandler::get)
-                .GET("/leagues/{id}", request -> ServerResponse.ok().bodyValue("league_id"))
-                .GET("/leagues/{league_id}/players", request -> ServerResponse.ok().bodyValue("players"))
-                .GET("/leagues/{league_id}/players/{id}", request -> ServerResponse.ok().bodyValue("players_id"))
-                .GET("/leagues/{league_id}/matches", request -> ServerResponse.ok().bodyValue("matches"))
-                .GET("/leagues/{league_id}/matches/{id}", request -> ServerResponse.ok().bodyValue("matches_id"))
-                .GET("/leagues/{league_id}/matches/{id}/games", request -> ServerResponse.ok().bodyValue("games"))
-                .GET("/leagues/{league_id}/matches/{match_id}/games/{id}", request -> ServerResponse.ok().bodyValue("games_id"))
+                .GET("/leagues/{id}", leagueHandler::getById)
+                .POST("/leagues/{league_id}/players", PlayerHandler::post)
+                .GET("/leagues/{league_id}/players", PlayerHandler::get)
+                .GET("/leagues/{league_id}/players/{id}", PlayerHandler::getById)
+                .POST("/leagues/{league_id}/matches", MatchHandler::post)
+                .GET("/leagues/{league_id}/matches", MatchHandler::get)
+                .GET("/leagues/{league_id}/matches/{id}", MatchHandler::getById)
+                .POST("/leagues/{league_id}/matches/{id}/games", GameHandler::post)
+                .GET("/leagues/{league_id}/matches/{id}/games", GameHandler::get)
+                .GET("/leagues/{league_id}/matches/{match_id}/games/{id}", GameHandler::getById)
                 .build();
     }
 }
