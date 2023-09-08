@@ -8,6 +8,8 @@ import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 
+import java.util.Optional;
+
 @Component
 public class PlayerHandler {
     private final Repository repository;
@@ -17,11 +19,23 @@ public class PlayerHandler {
     }
 
     public Mono<ServerResponse> get(ServerRequest serverRequest) {
-        return null;
+        String leagueId = serverRequest.pathVariable("league_id");
+        return ServerResponse.ok().bodyValue(this.repository.getLeague(leagueId).getPlayers());
     }
 
     public Mono<ServerResponse> getById(ServerRequest serverRequest) {
-        return null;
+        String leagueId = serverRequest.pathVariable("league_id");
+        String id = serverRequest.pathVariable("id");
+        Optional<Player> player = this.repository.getLeague(leagueId)
+                .getPlayers()
+                .stream()
+                .filter(p -> p.getId().equals(id))
+                .findAny();
+        if (player.isPresent()) {
+            ServerResponse.ok().bodyValue(player.get());
+        }
+
+        return ServerResponse.notFound().build();
     }
 
     public Mono<ServerResponse> post(ServerRequest serverRequest) {
