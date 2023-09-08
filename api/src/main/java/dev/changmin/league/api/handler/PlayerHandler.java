@@ -32,7 +32,7 @@ public class PlayerHandler {
                 .filter(p -> p.getId().equals(id))
                 .findAny();
         if (player.isPresent()) {
-            ServerResponse.ok().bodyValue(player.get());
+            return ServerResponse.ok().bodyValue(player.get());
         }
 
         return ServerResponse.notFound().build();
