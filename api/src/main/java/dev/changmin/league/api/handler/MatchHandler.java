@@ -17,15 +17,6 @@ public class MatchHandler {
         this.repository = repository;
     }
 
-    public Mono<ServerResponse> get(ServerRequest serverRequest) {
-        String leagueId = serverRequest.pathVariable("league_id");
-        Map<String, Game> matches = repository.getMatches(leagueId);
-        if (null == matches) {
-            return ServerResponse.notFound().build();
-        }
-        return ServerResponse.ok().bodyValue(matches);
-    }
-
     public Mono<ServerResponse> post(ServerRequest serverRequest) {
         String leagueId = serverRequest.pathVariable("league_id");
         Map<String, Game> matches = repository.getLeague(leagueId).match();
