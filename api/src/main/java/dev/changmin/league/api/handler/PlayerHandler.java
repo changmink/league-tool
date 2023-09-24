@@ -31,11 +31,9 @@ public class PlayerHandler {
                 .stream()
                 .filter(p -> p.getId().equals(id))
                 .findAny();
-        if (player.isPresent()) {
-            return ServerResponse.ok().bodyValue(player.get());
-        }
+        return player.map(value -> ServerResponse.ok().bodyValue(value))
+                .orElseGet(() -> ServerResponse.notFound().build());
 
-        return ServerResponse.notFound().build();
     }
 
     public Mono<ServerResponse> post(ServerRequest serverRequest) {
