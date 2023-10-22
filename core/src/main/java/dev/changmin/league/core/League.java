@@ -30,7 +30,7 @@ public class League {
             game.end(GameResult.values()[result]);
             return isAllEndGame();
         }
-        throw new IllegalArgumentException("Not Found dev.changmin.league.core.Game");
+        throw new IllegalArgumentException("Not Found Game");
     }
 
     private boolean isAllEndGame() {
