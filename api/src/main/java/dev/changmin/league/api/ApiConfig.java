@@ -22,8 +22,6 @@ public class ApiConfig {
                 .GET("/leagues/{league_id}/players", playerHandler::get)
                 .GET("/leagues/{league_id}/players/{id}", playerHandler::getById)
                 .POST("/leagues/{league_id}/matches", matchHandler::post)
-                .GET("/leagues/{league_id}/matches", matchHandler::get)
-                .GET("/leagues/{league_id}/matches/{id}", matchHandler::getById)
                 .POST("/leagues/{league_id}/matches/{id}/games", gameHandler::post)
                 .GET("/leagues/{league_id}/matches/{id}/games", gameHandler::get)
                 .GET("/leagues/{league_id}/matches/{match_id}/games/{id}", gameHandler::getById)

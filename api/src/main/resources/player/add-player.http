@@ -1,6 +1,6 @@
-POST localhost:8080/fb13f01f-047d-4b36-aedd-555548137a6e/players
+POST localhost:8080/leagues/42a42cd0-2bbc-4868-a852-b24ae84d8dcc/players
 content-type: application/json
 
 {
-  "name": "miyeon"
+  "name": "suhwa"
 }
