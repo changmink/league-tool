@@ -12,6 +12,8 @@ public class GameTest {
         Game game = new Game(player, player);
         assertTrue(game.isEnded());
 
+        assertTrue(game.toString().contains("부전승"));
+
         assertEquals(player.getScore(), 1);
         assertEquals(player.getTie(), 1);
         assertEquals(player.getLose(), 0);
@@ -20,6 +22,7 @@ public class GameTest {
 
     private static void make_not_ended_new_game(Player player1, Player player2, Game game) {
         assertNotEquals(player1, player2);
+        assertNotEquals(player1.getId(), player2.getId());
         assertFalse(game.isEnded());
 
         assertEquals(player1.getScore(), 0);
