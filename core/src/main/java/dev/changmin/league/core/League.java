@@ -11,6 +11,10 @@ public class League {
     private List<Player> players;
     private Map<String, Game> games;
     private int round;
+
+    public League() {
+    }
+
     public League(GameMatcher matcher, List<Player> players, String name) {
         this.id = UUID.randomUUID().toString();
         this.name = name;

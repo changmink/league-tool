@@ -10,4 +10,11 @@ public class LeagueRequest {
     public void setName(String name) {
         this.name = name;
     }
+
+    public LeagueRequest(String name) {
+        this.name = name;
+    }
+
+    public LeagueRequest() {
+    }
 }

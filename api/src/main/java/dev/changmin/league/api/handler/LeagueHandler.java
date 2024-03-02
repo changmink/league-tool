@@ -5,6 +5,8 @@ import dev.changmin.league.api.Repository;
 import dev.changmin.league.api.dto.LeagueRequest;
 import dev.changmin.league.core.GameMatcher;
 import dev.changmin.league.core.League;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
@@ -14,6 +16,7 @@ import java.util.ArrayList;
 
 @Component
 public class LeagueHandler {
+    private final Logger logger = LoggerFactory.getLogger(LeagueRequest.class);
     private GameMatcher gameMatcher = new GameMatcher();
     private final Repository repository;
 
@@ -31,6 +34,9 @@ public class LeagueHandler {
             League league = new League(gameMatcher, new ArrayList<>(), leagueRequest.getName());
             repository.addLeague(league);
             return ServerResponse.ok().bodyValue(league);
+        }).onErrorResume(throwable -> {
+            logger.error("{}", throwable);
+            return Mono.error(throwable);
         });
     }
 
